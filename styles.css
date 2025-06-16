@@ -1,0 +1,133 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333; /* Propiedad color: define el color del texto */
+    background-color: #f9f9f9; /* Propiedad background-color: define el color de fondo */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para el encabezado */
+header {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 2rem 0; /* Propiedad padding: espacio interno alrededor del contenido */
+    margin-bottom: 2rem; /* Propiedad margin: espacio externo alrededor del elemento */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem; /* Propiedad font-size: tamaño de la fuente */
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    background-color: #34495e;
+    margin: 0;
+}
+
+.navbar li {
+    padding: 1rem;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #f39c12;
+}
+
+/* Estilos para la sección principal */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.vehiculos-destacados h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Contenedor flex para los vehículos */
+.contenedor-vehiculos {
+    display: flex; /* Propiedad display: flex - permite diseño flexible de los elementos hijos */
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+/* Estilos para cada vehículo */
+.vehiculo {
+    background-color: white;
+    border: 1px solid #ddd; /* Propiedad border: define borde del elemento */
+    border-radius: 8px; /* Propiedad border-radius: redondea las esquinas */
+    padding: 1.5rem;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Propiedad box-shadow: añade sombra */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vehiculo img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.vehiculo h3 {
+    color: #2c3e50;
+    margin: 0.5rem 0;
+}
+
+.precio {
+    font-size: 1.5rem;
+    color: #e74c3c;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.descripcion {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* Efecto hover para los vehículos */
+.vehiculo:hover { /* Pseudoclase :hover - aplica estilos cuando el ratón pasa sobre el elemento */
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos para el pie de página */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .contenedor-vehiculos {
+        flex-direction: column;
+        align-items: center;
+    }
+}
