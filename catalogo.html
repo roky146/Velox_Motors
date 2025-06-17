@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Velox Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gallery-container {
+            padding: 50px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+        }
+        
+        .gallery-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .gallery-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #e74c3c;
+            margin: 15px auto;
+        }
+        
+        .gallery {
+            --d: 15s;
+            display: grid;
+            width: 300px;
+            margin: 0 auto;
+        }
+        
+        .gallery>img {
+            grid-area: 1/1;
+            width: 100%;
+            aspect-ratio: 1.5;
+            object-fit: cover;
+            border: 5px solid #ffffff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 2;
+            animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .gallery>img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .gallery>img:last-child {
+            animation-name: slide, z-order-last;
+        }
+        
+        .gallery>img:nth-child(1) {
+            animation-delay: calc(0*var(--d));
+            --r: -8deg;
+        }
+        
+        .gallery>img:nth-child(2) {
+            animation-delay: calc(-0.2*var(--d));
+            --r: 5deg;
+        }
+        
+        .gallery>img:nth-child(3) {
+            animation-delay: calc(-0.4*var(--d));
+            --r: -3deg;
+        }
+        
+        .gallery>img:nth-child(4) {
+            animation-delay: calc(-0.6*var(--d));
+            --r: 7deg;
+        }
+        
+        .gallery>img:nth-child(5) {
+            animation-delay: calc(-0.8*var(--d));
+            --r: 8deg;
+        }
+        
+        @keyframes slide {
+            10% {
+                transform: translate(120%) rotate(var(--r));
+            }
+            0%, 100%, 20% {
+                transform: translate(0%) rotate(var(--r));
+            }
+        }
+        
+        @keyframes z-order {
+            10%, 20% {
+                z-index: 1;
+            }
+            80% {
+                z-index: 2;
+            }
+        }
+        
+        @keyframes z-order-last {
+            10%, 20% {
+                z-index: 1;
+            }
+            90% {
+                z-index: 2;
+            }
+        }
+        
+        .vehicle-info {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 30px auto;
+        }
+        
+        .vehicle-info h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .vehicle-info p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery {
+                width: 250px;
+            }
+            
+            .gallery-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Velox Motors</h1>
+        <p>Tu destino para vehículos de calidad</p>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="pago.html">Opciones de pago</a></li>
+                <li><a href="contacto.html">Llega a nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="gallery-container">
+            <h2 class="gallery-title">Nuestro Catálogo Exclusivo</h2>
+            
+            <div class="gallery">
+                <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Sedán Elegance 2023">
+                <img src="https://images.unsplash.com/photo-1622893288761-823ba60f17a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="SUV Adventure X">
+                <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Deportivo Velocity S">
+                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pickup Titanium">
+                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Híbrido Eco">
+            </div>
+            
+            <div class="vehicle-info">
+                <h3>Explora Nuestra Colección</h3>
+                <p>Descubre nuestra selección premium de vehículos que combinan rendimiento, estilo y tecnología. Cada modelo en nuestro catálogo ha sido cuidadosamente seleccionado para ofrecerte la mejor experiencia de conducción.</p>
+                <p>Pasa el cursor sobre las imágenes para ver detalles ampliados y utiliza los controles para navegar por nuestra galería.</p>
+            </div>
+        </section>
+    </main>
+
+        <br>
+    <br>
+
+    <!-- Pie de página -->
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <p class="footer-text">&copy; 2026 Velox Motors. Todos los derechos reservados.<br>Creado por: Marcos R. Merlo</p>
+        </div>
+        
+        <div class="footer-center">
+            <p class="footer-text">
+                Contacto: <a href="mailto:marcosrodriguezmerlo@gmail.com">marcosrodriguezmerlo@gmail.com</a><br>
+                Tel: <a href="tel:18295870648">829-587-0648</a>
+            </p>
+        </div>
+        
+        <div class="footer-right">
+            <div class="social-icons">
+                <a href="https://www.facebook.com/imarcos22" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://wa.me/18295870648" target="_blank" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://github.com/roky146" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Usando Font Awesome Kit -->
+<script src="https://kit.fontawesome.com/20ded3597c.js" crossorigin="anonymous"></script>
+</body>
+</html>

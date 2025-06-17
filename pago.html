@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opciones de Pago - Velox Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .payment-container {
+            padding: 50px 20px;
+            background-color: #f8f9fa;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .payment-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            position: relative;
+            font-weight: 700;
+        }
+        
+        .payment-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #e74c3c;
+            margin: 15px auto;
+        }
+        
+        .payment-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .payment-option {
+            width: 320px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 200px;
+        }
+        
+        .payment-option:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .option-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .option-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #e74c3c;
+            background: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .option-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.3;
+        }
+        
+        .option-content {
+            padding: 25px;
+            color: #5a6a7a;
+            line-height: 1.6;
+        }
+        
+        .option-description {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .option-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid #e74c3c;
+        }
+        
+        .option-btn:hover {
+            background: transparent;
+            color: #e74c3c;
+        }
+        
+        .payment-features {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .features-title {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .feature-icon {
+            color: #e74c3c;
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        
+        .feature-text {
+            color: #5a6a7a;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .payment-option {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .payment-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Velox Motors</h1>
+        <p>Tu destino para vehículos de calidad</p>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="pago.html">Opciones de pago</a></li>
+                <li><a href="contacto.html">Llega a nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="payment-container">
+            <h2 class="payment-title">Opciones de Financiamiento</h2>
+            
+            <div class="payment-options">
+                <div class="payment-option">
+                    <div class="option-header">
+                        <div class="option-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3 class="option-title">Leasing Automotriz</h3>
+                    </div>
+                    <div class="option-content">
+                        <p class="option-description">Adquiere tu vehículo con pagos mensuales fijos y opción de compra al final del contrato. Ideal para empresas y profesionales.</p>
+                        <a href="fin-camino.html" class="option-btn">Más información</a>
+                    </div>
+                </div>
+                
+                <div class="payment-option">
+                    <div class="option-header">
+                        <div class="option-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3 class="option-title">Tarjetas de Crédito</h3>
+                    </div>
+                    <div class="option-content">
+                        <p class="option-description">Aceptamos todas las tarjetas principales (Visa, MasterCard, Amex) con planes especiales de financiamiento.</p>
+                        <a href="fin-camino.html" class="option-btn">Más información</a>
+                    </div>
+                </div>
+                
+                <div class="payment-option">
+                    <div class="option-header">
+                        <div class="option-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3 class="option-title">Consignación Bancaria</h3>
+                    </div>
+                    <div class="option-content">
+                        <p class="option-description">Utiliza el crédito de tu banco preferido con nuestras facilidades de procesamiento y tasas especiales.</p>
+                        <a href="fin-camino.html" class="option-btn">Más información</a>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Showcase de carros -->
+<div class="vehicle-showcase">
+    <h3 class="showcase-title">Vehículos Disponibles con estas Opciones</h3>
+    <div class="vehicle-container">
+        <div class="vehicle-card">
+            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Sedán Elegance">
+            <div class="vehicle-info">
+                <h4>Sedán Elegance</h4>
+                <p>Desde $24,999</p>
+            </div>
+        </div>
+        <div class="vehicle-card">
+            <img src="https://images.unsplash.com/photo-1622893288761-823ba60f17a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="SUV Adventure">
+            <div class="vehicle-info">
+                <h4>SUV Adventure</h4>
+                <p>Desde $32,500</p>
+            </div>
+        </div>
+        <div class="vehicle-card">
+            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Deportivo Velocity">
+            <div class="vehicle-info">
+                <h4>Deportivo Velocity</h4>
+                <p>Desde $45,750</p>
+            </div>
+        </div>
+        <div class="vehicle-card">
+            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pickup Titanium">
+            <div class="vehicle-info">
+                <h4>Titanium M44</h4>
+                <p>Desde $38,900</p>
+            </div>
+        </div>
+        <div class="vehicle-card">
+            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Híbrido Eco">
+            <div class="vehicle-info">
+                <h4>Híbrido Eco</h4>
+                <p>Desde $29,999</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Estilos CSS correspondientes -->
+<style>
+    .vehicle-showcase {
+        max-width: 1200px;
+        margin: 50px auto 0;
+        padding: 0 20px;
+    }
+    
+    .showcase-title {
+        text-align: center;
+        color: #2c3e50;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        position: relative;
+    }
+    
+    .showcase-title::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 3px;
+        background: #e74c3c;
+        margin: 10px auto;
+    }
+    
+    .vehicle-container {
+        display: flex;
+        height: 300px;
+        gap: 10px;
+    }
+    
+    .vehicle-card {
+        flex: 1;
+        overflow: hidden;
+        border-radius: 10px;
+        transition: all 0.5s ease;
+        position: relative;
+    }
+    
+    .vehicle-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(0.7);
+        transition: all 0.5s ease;
+    }
+    
+    .vehicle-card:hover {
+        flex: 3;
+    }
+    
+    .vehicle-card:hover img {
+        filter: grayscale(0);
+    }
+    
+    .vehicle-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(44, 62, 80, 0.8);
+        color: white;
+        padding: 15px;
+        transform: translateY(100%);
+        transition: all 0.3s ease;
+    }
+    
+    .vehicle-card:hover .vehicle-info {
+        transform: translateY(0);
+    }
+    
+    .vehicle-info h4 {
+        margin: 0 0 5px 0;
+        font-size: 1.2rem;
+    }
+    
+    .vehicle-info p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+        .vehicle-container {
+            height: 200px;
+        }
+        
+        .vehicle-info h4 {
+            font-size: 1rem;
+        }
+        
+        .vehicle-info p {
+            font-size: 0.8rem;
+        }
+    }
+</style>
+            
+            <div class="payment-features">
+                <h3 class="features-title">Beneficios de Nuestros Financiamientos</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <span class="feature-icon"><i class="fas fa-check-circle"></i></span>
+                        <p class="feature-text">Tasas de interés competitivas</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon"><i class="fas fa-check-circle"></i></span>
+                        <p class="feature-text">Plazos flexibles de hasta 72 meses</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon"><i class="fas fa-check-circle"></i></span>
+                        <p class="feature-text">Aprobación rápida en 24-48 horas</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon"><i class="fas fa-check-circle"></i></span>
+                        <p class="feature-text">Sin penalización por pago anticipado</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon"><i class="fas fa-check-circle"></i></span>
+                        <p class="feature-text">Seguro incluido en algunas opciones</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon"><i class="fas fa-check-circle"></i></span>
+                        <p class="feature-text">Asesoría financiera personalizada</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        <br>
+    <br>
+
+    <!-- Pie de página -->
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <p class="footer-text">&copy; 2026 Velox Motors. Todos los derechos reservados.<br>Creado por: Marcos R. Merlo</p>
+        </div>
+        
+        <div class="footer-center">
+            <p class="footer-text">
+                Contacto: <a href="mailto:marcosrodriguezmerlo@gmail.com">marcosrodriguezmerlo@gmail.com</a><br>
+                Tel: <a href="tel:18295870648">829-587-0648</a>
+            </p>
+        </div>
+        
+        <div class="footer-right">
+            <div class="social-icons">
+                <a href="https://www.facebook.com/imarcos22" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://wa.me/18295870648" target="_blank" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://github.com/roky146" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Usando Font Awesome Kit -->
+<script src="https://kit.fontawesome.com/20ded3597c.js" crossorigin="anonymous"></script>
+</body>
+</html>
