@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | Velox Motors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-gray: #ecf0f1;
+            --dark-gray: #7f8c8d;
+            --sidebar-width: 250px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .admin-sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            height: 100%;
+        }
+        
+        .admin-logo {
+            text-align: center;
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .admin-logo h2 {
+            color: white;
+        }
+        
+        .admin-logo span {
+            color: var(--secondary-color);
+        }
+        
+        .admin-menu {
+            list-style: none;
+        }
+        
+        .admin-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-menu a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .admin-menu a:hover, .admin-menu a.active {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--secondary-color);
+        }
+        
+        .admin-menu i {
+            margin-right: 0.8rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        .admin-main {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 2rem;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .admin-title {
+            color: var(--primary-color);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 0.8rem;
+        }
+        
+        /* Dashboard Widgets */
+        .dashboard-widgets {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .widget {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .widget-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        /* Promo Generator Widget */
+        .promo-generator .input-box {
+            position: relative;
+            margin: 15px 0;
+        }
+        
+        .promo-generator .input-box input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        
+        .promo-generator .input-box span {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+        
+        .promo-options {
+            margin: 20px 0;
+        }
+        
+        .promo-options .option {
+            margin-bottom: 10px;
+        }
+        
+        .pass-length {
+            margin-bottom: 1rem;
+        }
+        
+        .pass-length span {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .velox-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1rem;
+            width: 100%;
+        }
+        
+        .velox-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .admin-container {
+                flex-direction: column;
+            }
+            
+            .admin-sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            
+            .admin-main {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h2>VELOX<span>ADMIN</span></h2>
+                <p>Panel de control</p>
+            </div>
+            
+            <ul class="admin-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-car"></i> Vehículos</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Clientes</a></li>
+                <li><a href="#"><i class="fas fa-tags"></i> Promociones</a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> Reportes</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Configuración</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+            </ul>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1 class="admin-title">Dashboard</h1>
+                <div class="user-info">
+                    <img src="https://randomuser.me/api/portraits/lego/6.jpg" alt="Admin User">
+                    <span>Administrador</span>
+                </div>
+            </div>
+            
+            <div class="dashboard-widgets">
+                <!-- Promo Generator Widget -->
+                <div class="widget promo-generator">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Generador de Códigos Promocionales</h3>
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    
+                    <div class="input-box">
+                        <input type="text" readonly placeholder="Código generado" id="promo-code">
+                        <span class="copy-icon"><i class="fas fa-copy"></i></span>
+                    </div>
+                    
+                    <div class="promo-options">
+                        <div class="option">
+                            <input type="checkbox" id="uppercase" checked>
+                            <label for="uppercase">Incluir mayúsculas</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="numbers" checked>
+                            <label for="numbers">Incluir números</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="symbols">
+                            <label for="symbols">Incluir símbolos</label>
+                        </div>
+                    </div>
+                    
+                    <div class="pass-length">
+                        <span>Longitud: <span class="length-value">8</span></span>
+                        <input type="range" min="6" max="20" value="8" class="length-slider">
+                    </div>
+                    
+                    <button class="velox-btn generate-btn">Generar Código</button>
+                </div>
+                
+                <!-- Otros widgets pueden agregarse aquí -->
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Resumen de Ventas</h3>
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <p>Próximamente...</p>
+                </div>
+                
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Actividad Reciente</h3>
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <p>Próximamente...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Configuración del generador de códigos
+        const lengthSlider = document.querySelector(".length-slider");
+        const lengthValue = document.querySelector(".length-value");
+        const options = document.querySelectorAll(".option input");
+        const copyIcon = document.querySelector(".copy-icon");
+        const promoInput = document.querySelector("#promo-code");
+        const generateBtn = document.querySelector(".generate-btn");
+
+        const characters = {
+            uppercase: "ABCDEFGHJKLMNPQRSTUVWXYZ", // Eliminamos I y O para evitar confusión
+            numbers: "23456789", // Eliminamos 0 y 1
+            symbols: "!$%&*+-"
+        };
+
+        const generatePromoCode = () => {
+            let staticChars = "";
+            let randomCode = "";
+            const passLength = lengthSlider.value;
+
+            options.forEach((option) => {
+                if (option.checked && option.id !== "exc-duplicate" && option.id !== "spaces") {
+                    staticChars += characters[option.id];
+                }
+            });
+
+            for (let i = 0; i < passLength; i++) {
+                const randomChar = staticChars[Math.floor(Math.random() * staticChars.length)];
+                randomCode += randomChar;
+            }
+            
+            // Formatear el código en bloques de 4 caracteres
+            promoInput.value = randomCode.match(/.{1,4}/g).join("-");
+        };
+
+        const updateSlider = () => {
+            lengthValue.textContent = lengthSlider.value;
+            generatePromoCode();
+        };
+
+        const copyPromoCode = () => {
+            navigator.clipboard.writeText(promoInput.value.replace(/-/g, ""));
+            copyIcon.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => {
+                copyIcon.innerHTML = '<i class="fas fa-copy"></i>';
+            }, 1500);
+        };
+
+        // Event listeners
+        copyIcon.addEventListener("click", copyPromoCode);
+        lengthSlider.addEventListener("input", updateSlider);
+        generateBtn.addEventListener("click", generatePromoCode);
+        
+        // Generar código al cargar
+        generatePromoCode();
+    </script>
+</body>
+</html>

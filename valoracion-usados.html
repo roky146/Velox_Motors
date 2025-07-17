@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valoración de Usados | Velox Motors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">   
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-gray: #ecf0f1;
+            --dark-gray: #7f8c8d;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1485291571150-772bcfc10da5?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Calculator Section */
+        .valuation-section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .frost-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        
+        .valuation-form h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .age-display {
+            background-color: var(--light-gray);
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .velox-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 1.5rem auto 0;
+            font-size: 1rem;
+        }
+        
+        .velox-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Result Section */
+        .valuation-result {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .result-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .price-range {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--success-color);
+            margin: 1rem 0;
+        }
+        
+        .price-range span {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+        }
+        
+        .factors-list {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+        
+        .factors-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .factor-value {
+            font-weight: 600;
+        }
+        
+        .disclaimer {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        /* Additional Info */
+        .valuation-info {
+            margin-top: 3rem;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Estilo para el input de mes y año */
+        input[type="month"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding: 12px;
+        }
+    </style>
+</head>
+<body>
+<header class="sticky-header">
+    <div class="container header-content">
+        <a href="index.html" class="logo">VELOX<span>MOTORS</span></a>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+                <li><a href="valoracion-usados.html" class="nav-link">¡Valora tu vehículo!</a></li>
+                <li><a href="pago.html" class="nav-link">Opciones de pago</a></li>
+                <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+        
+        <a href="velox-admin.html" class="admin-btn">
+            <i class="fas fa-user-shield"></i>
+            <span>Área Admin</span>
+        </a>
+        
+        <!-- Indicador de página activa -->
+        <div class="active-indicator"></div>
+    </div>
+</header>
+    
+    <section class="hero">
+        <div class="container hero-content">
+            <div>
+                <h1>Valoración de Vehículos Usados</h1>
+                <p>Descubre el valor real de tu vehículo en segundos</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="valuation-section">
+        <div class="container">
+            <h2 class="section-title">Calcula el valor de tu vehículo</h2>
+            
+            <div class="valuation-form frost-effect">
+                <h3>Información del vehículo</h3>
+                <p>Complete todos los campos para obtener una valoración estimada</p>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vehicle-brand">Marca del vehículo</label>
+                        <select id="vehicle-brand">
+                            <option value="" disabled selected>Seleccione una marca</option>
+                            <optgroup label="Toyota">
+                                <option value="toyota_sedan">Sedan</option>
+                                <option value="toyota_suv">SUV</option>
+                                <option value="toyota_hatchback">Hatchback</option>
+                            </optgroup>
+                            <optgroup label="Honda">
+                                <option value="honda_sedan">Sedan</option>
+                                <option value="honda_suv">SUV</option>
+                                <option value="honda_hatchback">Hatchback</option>
+                            </optgroup>
+                            <optgroup label="Hyundai">
+                                <option value="hyundai_sedan">Sedan</option>
+                                <option value="hyundai_suv">SUV</option>
+                                <option value="hyundai_hatchback">Hatchback</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vehicle-model">Modelo</label>
+                        <select id="vehicle-model" disabled>
+                            <option value="" selected>Primero seleccione marca y tipo</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="manufacture-date">Fecha de fabricación (Mes/Año)</label>
+                    <input type="month" id="manufacture-date" max="">
+                    <div class="age-display" id="age-display">Antigüedad: --</div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mileage">Kilometraje (km)</label>
+                        <input type="number" id="mileage" placeholder="Ej: 45000" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="condition">Estado general</label>
+                        <select id="condition">
+                            <option value="excellent">Excelente</option>
+                            <option value="good" selected>Bueno</option>
+                            <option value="fair">Regular</option>
+                            <option value="poor">Pobre</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button id="calculate-value-btn" class="velox-btn">Calcular Valor</button>
+                
+                <div class="valuation-result" id="valuation-result">
+                    <h3 class="result-title">Estimación de valor</h3>
+                    <div class="price-range" id="price-range">RD$0 - RD$0</div>
+                    
+                    <ul class="factors-list">
+                        <li>
+                            <span>Marca y modelo:</span>
+                            <span class="factor-value" id="brand-model-value">--</span>
+                        </li>
+                        <li>
+                            <span>Antigüedad:</span>
+                            <span class="factor-value" id="age-value">--</span>
+                        </li>
+                        <li>
+                            <span>Kilometraje:</span>
+                            <span class="factor-value" id="mileage-value">--</span>
+                        </li>
+                        <li>
+                            <span>Estado general:</span>
+                            <span class="factor-value" id="condition-value">--</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p class="disclaimer">*Esta valoración es una estimación basada en los datos proporcionados. Para una valoración exacta, recomendamos una inspección presencial.</p>
+            </div>
+            
+            <div class="valuation-info">
+                <div class="info-card">
+                    <h3>¿Cómo calculamos el valor de tu vehículo?</h3>
+                    <p>Nuestro sistema considera múltiples factores para determinar el valor de mercado de tu vehículo:</p>
+                    <ul>
+                        <li><strong>Marca y modelo:</strong> Algunas marcas mantienen mejor su valor que otras.</li>
+                        <li><strong>Antigüedad:</strong> Los vehículos más nuevos generalmente tienen mayor valor.</li>
+                        <li><strong>Kilometraje:</strong> Menos kilómetros suelen significar mayor valor.</li>
+                        <li><strong>Estado general:</strong> Consideramos el estado mecánico y estético.</li>
+                        <li><strong>Tipo de vehículo:</strong> SUV, Sedan o Hatchback tienen diferentes tasas de depreciación.</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>¿Por qué vender con nosotros?</h3>
+                    <ul>
+                        <li>Valoración justa y transparente</li>
+                        <li>Pago inmediato</li>
+                        <li>Trámites rápidos y sencillos</li>
+                        <li>Equipo especializado en vehículos usados</li>
+                        <li>Amplia red de compradores</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pie de página -->
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <p class="footer-text">&copy; 2026 Velox Motors. Todos los derechos reservados.<br>Creado por: Marcos R. Merlo</p>
+        </div>
+        
+        <div class="footer-center">
+            <p class="footer-text">
+                Contacto: <a href="mailto:marcosrodriguezmerlo@gmail.com">marcosrodriguezmerlo@gmail.com</a><br>
+                Tel: <a href="tel:18295870648">829-587-0648</a>
+            </p>
+        </div>
+        
+        <div class="footer-right">
+            <div class="social-icons">
+                <a href="https://www.facebook.com/imarcos22" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://wa.me/18295870648" target="_blank" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://github.com/roky146" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Usando Font Awesome Kit -->
+<script src="https://kit.fontawesome.com/20ded3597c.js" crossorigin="anonymous"></script>
+    
+    <script>
+        // Base de datos de modelos y precios basados en el mercado dominicano
+        const vehicleModels = {
+            // Toyota
+            'toyota_sedan': [
+                { model: 'Corolla', basePrice: 1200000, depreciation: 0.08 },
+                { model: 'Camry', basePrice: 1800000, depreciation: 0.07 },
+                { model: 'Yaris', basePrice: 950000, depreciation: 0.09 }
+            ],
+            'toyota_suv': [
+                { model: '4Runner', basePrice: 2500000, depreciation: 0.06 },
+                { model: 'RAV4', basePrice: 1900000, depreciation: 0.07 },
+                { model: 'Highlander', basePrice: 2800000, depreciation: 0.05 }
+            ],
+            'toyota_hatchback': [
+                { model: 'Yaris Hatchback', basePrice: 1100000, depreciation: 0.09 },
+                { model: 'Corolla Hatchback', basePrice: 1300000, depreciation: 0.08 },
+                { model: 'Prius', basePrice: 1500000, depreciation: 0.07 }
+            ],
+            // Honda
+            'honda_sedan': [
+                { model: 'Civic', basePrice: 1250000, depreciation: 0.08 },
+                { model: 'Accord', basePrice: 1750000, depreciation: 0.07 },
+                { model: 'City', basePrice: 900000, depreciation: 0.09 }
+            ],
+            'honda_suv': [
+                { model: 'CR-V', basePrice: 2000000, depreciation: 0.07 },
+                { model: 'Pilot', basePrice: 2700000, depreciation: 0.06 },
+                { model: 'HR-V', basePrice: 1600000, depreciation: 0.08 }
+            ],
+            'honda_hatchback': [
+                { model: 'Fit', basePrice: 950000, depreciation: 0.09 },
+                { model: 'Civic Hatchback', basePrice: 1400000, depreciation: 0.08 }
+            ],
+            // Hyundai
+            'hyundai_sedan': [
+                { model: 'Elantra', basePrice: 1100000, depreciation: 0.09 },
+                { model: 'Sonata', basePrice: 1600000, depreciation: 0.08 },
+                { model: 'Accent', basePrice: 850000, depreciation: 0.10 }
+            ],
+            'hyundai_suv': [
+                { model: 'Tucson', basePrice: 1700000, depreciation: 0.08 },
+                { model: 'Santa Fe', basePrice: 2200000, depreciation: 0.07 },
+                { model: 'Creta', basePrice: 1300000, depreciation: 0.09 }
+            ],
+            'hyundai_hatchback': [
+                { model: 'i30', basePrice: 1150000, depreciation: 0.09 },
+                { model: 'Kona', basePrice: 1400000, depreciation: 0.08 }
+            ]
+        };
+
+        // Configurar fecha máxima como hoy
+        const today = new Date();
+        const currentMonth = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0');
+        document.getElementById('manufacture-date').max = currentMonth;
+        
+        // Actualizar modelos cuando se selecciona marca y tipo
+        document.getElementById('vehicle-brand').addEventListener('change', function() {
+            const brandType = this.value;
+            const modelSelect = document.getElementById('vehicle-model');
+            
+            modelSelect.innerHTML = '<option value="" selected>Seleccione modelo</option>';
+            modelSelect.disabled = !brandType;
+            
+            if (brandType && vehicleModels[brandType]) {
+                vehicleModels[brandType].forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model.model.toLowerCase().replace(/\s+/g, '_');
+                    option.textContent = model.model;
+                    modelSelect.appendChild(option);
+                });
+            }
+        });
+        
+        // Calcular antigüedad automáticamente al cambiar la fecha
+        document.getElementById('manufacture-date').addEventListener('change', function() {
+            const inputDate = new Date(this.value + '-01');
+            
+            if (inputDate > today) {
+                document.getElementById('age-display').textContent = 'Fecha inválida';
+                return;
+            }
+            
+            const diffTime = today - inputDate;
+            const years = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diffTime % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30.44));
+            
+            document.getElementById('age-display').textContent = `Antigüedad: ${years} años y ${Math.round(months)} meses`;
+        });
+        
+        // Función para calcular el valor del vehículo
+        function calculateVehicleValue() {
+            const brandType = document.getElementById('vehicle-brand').value;
+            const modelId = document.getElementById('vehicle-model').value;
+            const manufactureDate = new Date(document.getElementById('manufacture-date').value + '-01');
+            const mileage = parseInt(document.getElementById('mileage').value) || 0;
+            const condition = document.getElementById('condition').value;
+            
+            // Validaciones básicas
+            if (!brandType) {
+                alert('Por favor seleccione la marca y tipo del vehículo');
+                return;
+            }
+            
+            if (!modelId) {
+                alert('Por favor seleccione el modelo del vehículo');
+                return;
+            }
+            
+            if (!document.getElementById('manufacture-date').value) {
+                alert('Por favor ingrese la fecha de fabricación');
+                return;
+            }
+            
+            // Obtener modelo seleccionado
+            const selectedBrandModels = vehicleModels[brandType];
+            const selectedModel = selectedBrandModels.find(m => m.model.toLowerCase().replace(/\s+/g, '_') === modelId);
+            
+            if (!selectedModel) {
+                alert('Modelo no encontrado');
+                return;
+            }
+            
+            // Calcular antigüedad en años
+            const ageInYears = today.getFullYear() - manufactureDate.getFullYear();
+            
+            // Calcular valor base con depreciación por año
+            let estimatedValue = selectedModel.basePrice * Math.pow(1 - selectedModel.depreciation, ageInYears);
+            
+            // Ajuste por kilometraje (RD$5 por km después de 20,000 km por año)
+            const expectedKmPerYear = 20000;
+            const expectedKm = expectedKmPerYear * ageInYears;
+            const excessKm = Math.max(0, mileage - expectedKm);
+            estimatedValue -= excessKm * 5;
+            
+            // Ajuste por condición
+            switch(condition) {
+                case 'excellent':
+                    estimatedValue *= 1.05; // 5% más
+                    break;
+                case 'fair':
+                    estimatedValue *= 0.90; // 10% menos
+                    break;
+                case 'poor':
+                    estimatedValue *= 0.75; // 25% menos
+                    break;
+            }
+            
+            // Asegurar que el valor no sea negativo
+            estimatedValue = Math.max(estimatedValue, selectedModel.basePrice * 0.1); // Mínimo 10% del valor original
+            
+            // Calcular rango de precios (10% arriba/abajo del valor estimado)
+            const minPrice = Math.round(estimatedValue * 0.9);
+            const maxPrice = Math.round(estimatedValue * 1.1);
+            
+            // Mostrar resultados
+            document.getElementById('price-range').textContent = 
+                `RD$${maxPrice.toLocaleString('es-DO')} - RD$${minPrice.toLocaleString('es-DO')}`;
+            
+            // Mostrar detalles de los factores
+            document.getElementById('brand-model-value').textContent = 
+                `${brandType.split('_')[0].charAt(0).toUpperCase() + brandType.split('_')[0].slice(1)} ${selectedModel.model}`;
+            
+            document.getElementById('age-value').textContent = 
+                document.getElementById('age-display').textContent.replace('Antigüedad: ', '');
+            
+            document.getElementById('mileage-value').textContent = 
+                `${mileage.toLocaleString('es-DO')} km`;
+            
+            document.getElementById('condition-value').textContent = 
+                condition === 'excellent' ? 'Excelente' :
+                condition === 'good' ? 'Bueno' :
+                condition === 'fair' ? 'Regular' : 'Pobre';
+            
+            // Mostrar sección de resultados
+            document.getElementById('valuation-result').style.display = 'block';
+        }
+        
+        // Event listener para el botón de calcular
+        document.getElementById('calculate-value-btn').addEventListener('click', calculateVehicleValue);
+    </script>
+</body>
+</html>

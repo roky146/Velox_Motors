@@ -176,18 +176,30 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Velox Motors</h1>
-        <p>Tu destino para vehículos de calidad</p>
+<!-- Cabecera moderna con efecto sticky y transiciones -->
+<header class="sticky-header">
+    <div class="container header-content">
+        <a href="index.html" class="logo">VELOX<span>MOTORS</span></a>
+        
         <nav>
-            <ul class="navbar">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="catalogo.html">Catálogo</a></li>
-                <li><a href="pago.html">Opciones de pago</a></li>
-                <li><a href="contacto.html">Llega a nosotros</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+                <li><a href="valoracion-usados.html" class="nav-link">¡Valora tu vehículo!</a></li>
+                <li><a href="pago.html" class="nav-link">Opciones de pago</a></li>
+                <li><a href="contacto.html" class="nav-link">Contacto</a></li>
             </ul>
         </nav>
-    </header>
+        
+        <a href="velox-admin.html" class="admin-btn">
+            <i class="fas fa-user-shield"></i>
+            <span>Área Admin</span>
+        </a>
+        
+        <!-- Indicador de página activa -->
+        <div class="active-indicator"></div>
+    </div>
+</header>
 
     <main>
         <section class="payment-container">
@@ -436,7 +448,7 @@
         </div>
     </div>
 </footer>
-
+<script src="/js/header.js"></script>
 <!-- Usando Font Awesome Kit -->
 <script src="https://kit.fontawesome.com/20ded3597c.js" crossorigin="anonymous"></script>
 </body>
